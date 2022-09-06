@@ -3,6 +3,7 @@ import styled from "styled-components";
 export default function Login() {
   return (
     <Main>
+        <h1>MyWallet</h1>
       <Form>
         <input placeholder="E-mail" name="email" />
         <input placeholder="Senha" name="password" />
@@ -18,6 +19,14 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   background-color: var(--color-background);
+  flex-direction: column;
+
+  h1 {
+    font-family: Saira Stencil One;
+    color: var(--color-white);
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
 `;
 
 const Form = styled.form`
