@@ -46,8 +46,9 @@ table {
 }
 * {
 	box-sizing: border-box;
+	font-family: Raleway;
 	--color-background: #8C11BE;
-    --color-buttons: #A328D6;
+    --color-button: #A328D6;
     --color-white: #FFFFFF;
     --color-green: #03AC00;
     --color-red: #C70000;

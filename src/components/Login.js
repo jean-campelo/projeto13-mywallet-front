@@ -3,10 +3,11 @@ import styled from "styled-components";
 export default function Login() {
   return (
     <Main>
-        <h1>MyWallet</h1>
+      <h1>MyWallet</h1>
       <Form>
         <input placeholder="E-mail" name="email" />
         <input placeholder="Senha" name="password" />
+        <button> Entrar </button>
       </Form>
     </Main>
   );
@@ -38,11 +39,22 @@ const Form = styled.form`
     width: 70vw;
     height: 45px;
     margin-bottom: 6px;
-    font-family: Raleway;
     color: var(--color-black);
-    border: 1px solid var(--color-background);
+    border: 1px solid var(--color-white);
     border-radius: 5px;
     padding: 10px;
     font-size: 20px;
+  }
+  button {
+    width: 70vw;
+    height: 45px;
+    margin-bottom: 6px;
+    color: var(--color-white);
+    border: 1px solid var(--color-button);
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: var(--color-button);
+    font-weight: 700;
   }
 `;
