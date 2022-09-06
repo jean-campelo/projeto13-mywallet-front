@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
@@ -9,6 +10,7 @@ export default function Login() {
         <input placeholder="Senha" name="password" />
         <button> Entrar </button>
       </Form>
+      <Link to={"/register"}><h2>Primeira vez? Cadastre-se!</h2></Link>
     </Main>
   );
 }
@@ -28,6 +30,13 @@ const Main = styled.main`
     font-size: 32px;
     margin-bottom: 24px;
   }
+  h2 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-white);
+    margin-top: 26px;
+    letter-spacing: 0.5px;
+  }
 `;
 
 const Form = styled.form`
@@ -38,7 +47,7 @@ const Form = styled.form`
   input {
     width: 70vw;
     height: 45px;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     color: var(--color-black);
     border: 1px solid var(--color-white);
     border-radius: 5px;
