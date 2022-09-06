@@ -6,7 +6,7 @@ export default function Register () {
     <Main>
       <h1>MyWallet</h1>
       <Form>
-         <input placeholder="Nome" name="name" />
+        <input placeholder="Nome" name="name" />
         <input placeholder="E-mail" name="email" />
         <input placeholder="Senha" name="password" />
         <input placeholder="Confirme a senha" name="confirmPassword" />
