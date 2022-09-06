@@ -46,7 +46,6 @@ table {
 }
 * {
 	box-sizing: border-box;
-	--font-primary: Playball;
 	--color-background: #8C11BE;
     --color-buttons: #A328D6;
     --color-white: #FFFFFF;
