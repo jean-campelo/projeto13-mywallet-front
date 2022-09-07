@@ -10,14 +10,22 @@ export default function Account() {
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>
       </Header>
+
+      <RegistersSection>
+        <div>
+          <h1>Não há registros de <br></br>entrada ou saída</h1>
+        </div>
+      </RegistersSection>
     </Container>
   );
 }
 
 const Container = styled.main`
   display: flex;
+  align-items: center;
   height: 100vh;
   width: 100vw;
+  flex-direction: column;
   background-color: var(--color-background);
   padding: 16px;
 `;
@@ -25,7 +33,8 @@ const Container = styled.main`
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  width: 100vw;
+  background-color: black;
+  width: 90vw;
 
   h1 {
     font-weight: 700;
@@ -36,5 +45,29 @@ const Header = styled.header`
   ion-icon {
     color: var(--color-white);
     font-size: 28px;
+  }
+`;
+
+const RegistersSection = styled.div`
+  background-color: var(--color-white);
+  width: 90vw;
+  height: 70vh;
+  margin: 16px 0;
+  border: 1px solid var(--color-white);
+  border-radius: 5px;
+  
+
+  div {
+    width: 90vw;
+    height: 70vh;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    color: #868686;
+    text-align: center;
+    line-height: 24px;   
   }
 `;
