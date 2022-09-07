@@ -1,11 +1,14 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export default function RegisterCredit() {
   return (
     <Container>
       <Header>
         <h1>Nova entrada</h1>
-        <ion-icon name="close-outline"></ion-icon>
+        <Link to="/account">
+          <ion-icon name="close-outline"></ion-icon>
+        </Link>
       </Header>
       <Form>
         <input placeholder="Valor" name="value" />
