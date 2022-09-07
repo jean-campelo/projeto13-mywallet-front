@@ -13,9 +13,22 @@ export default function Account() {
 
       <RegistersSection>
         <div>
-          <h1>Não há registros de <br></br>entrada ou saída</h1>
+          <h1>
+            Não há registros de <br></br>entrada ou saída
+          </h1>
         </div>
       </RegistersSection>
+
+      <Buttons>
+        <NewDebit>
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <h1>Nova <br></br>entrada</h1>
+        </NewDebit>
+        <NewCredit>
+          <ion-icon name="remove-circle-outline"></ion-icon>
+          <h1>Nova <br></br>saída</h1>
+        </NewCredit>
+      </Buttons>
     </Container>
   );
 }
@@ -33,7 +46,6 @@ const Container = styled.main`
 const Header = styled.header`
   display: flex;
   justify-content: space-between;
-  background-color: black;
   width: 90vw;
 
   h1 {
@@ -69,5 +81,49 @@ const RegistersSection = styled.div`
     color: #868686;
     text-align: center;
     line-height: 24px;   
+  }
+`;
+
+const Buttons = styled.section`
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const NewDebit = styled.div`
+  background-color: var(--color-button);
+  width: 40vw;
+  height: 16vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--color-white);
+  font-size: 22px;
+  line-height: 22px;
+
+  h1 {
+    font-weight: 700;
+    font-size: 16px;
+  }
+`;
+
+const NewCredit = styled.div`
+  background-color: var(--color-button);
+  width: 40vw;
+  height: 16vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  color: var(--color-white);
+  font-size: 22px;
+  line-height: 22px;
+
+  h1 {
+    font-weight: 700;
+    font-size: 16px;
   }
 `;
