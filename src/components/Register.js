@@ -47,7 +47,7 @@ const Form = styled.form`
   justify-content: center;
   flex-direction: column;
   input {
-    width: 70vw;
+    width: 90vw;
     height: 45px;
     margin-bottom: 12px;
     color: var(--color-black);
@@ -57,7 +57,7 @@ const Form = styled.form`
     font-size: 20px;
   }
   button {
-    width: 70vw;
+    width: 90vw;
     height: 45px;
     margin-bottom: 6px;
     color: var(--color-white);
