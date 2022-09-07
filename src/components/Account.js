@@ -10,7 +10,6 @@ export default function Account() {
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>
       </Header>
-
       <RegistersSection>
         <div>
           <h1>
