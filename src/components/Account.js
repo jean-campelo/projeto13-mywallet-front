@@ -20,14 +20,23 @@ export default function Account() {
       </RegistersSection>
 
       <Buttons>
-        <NewDebit>
-          <ion-icon name="add-circle-outline"></ion-icon>
-          <h1>Nova <br></br>entrada</h1>
-        </NewDebit>
-        <NewCredit>
-          <ion-icon name="remove-circle-outline"></ion-icon>
-          <h1>Nova <br></br>saída</h1>
-        </NewCredit>
+        <Link to="/registerCredit">
+          <NewCredit>
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <h1>
+              Nova <br></br>entrada
+            </h1>
+          </NewCredit>
+        </Link>
+
+        <Link to="/registerDebit">
+          <NewDebit>
+            <ion-icon name="remove-circle-outline"></ion-icon>
+            <h1>
+              Nova <br></br>saída
+            </h1>
+          </NewDebit>
+        </Link>
       </Buttons>
     </Container>
   );
@@ -67,11 +76,10 @@ const RegistersSection = styled.div`
   margin: 16px 0;
   border: 1px solid var(--color-white);
   border-radius: 5px;
-  
 
   div {
     width: 90vw;
-    height: 70vh;    
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,7 +88,7 @@ const RegistersSection = styled.div`
   h1 {
     color: #868686;
     text-align: center;
-    line-height: 24px;   
+    line-height: 24px;
   }
 `;
 
