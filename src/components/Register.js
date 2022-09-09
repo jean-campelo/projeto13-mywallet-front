@@ -1,20 +1,49 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import DataContext from "../context/dataContext.js";
 
-export default function Register () {
+export default function Register() {
+  const { body, setBody } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
       <Form>
-        <input placeholder="Nome" name="name" />
-        <input placeholder="E-mail" name="email" />
-        <input placeholder="Senha" name="password" />
-        <input placeholder="Confirme a senha" name="confirmPassword" />
+        <input
+          placeholder="Nome"
+          name="name"
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
+        <input
+          placeholder="E-mail"
+          name="email"
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
+        <input
+          placeholder="Senha"
+          name="password"
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
+        <input
+          placeholder="Confirme a senha"
+          name="confirmPassword"
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
         <button> Cadastrar </button>
       </Form>
-      <Link to={"/"}><h2>Já tem uma conta? Entre agora!</h2></Link>
+      <Link to={"/"}>
+        <h2>Já tem uma conta? Entre agora!</h2>
+      </Link>
     </Main>
   );
+
+  function handleForm(name, value) {
+    setBody({
+      ...body,
+      [name]: value,
+    });
+    console.log(body)
+  }
 }
 
 const Main = styled.main`
