@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
+import { postNewUser } from "../services/my_wallet.js";
 
 export default function Register() {
+  let navigate = useNavigate();
   const { body, setBody } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
-      <Form>
+      <Form onSubmit={sendForm}>
         <input
           placeholder="Nome"
           name="name"
@@ -29,7 +31,7 @@ export default function Register() {
           name="confirmPassword"
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
-        <button> Cadastrar </button>
+        <button type="submit"> Cadastrar </button>
       </Form>
       <Link to={"/"}>
         <h2>Já tem uma conta? Entre agora!</h2>
@@ -42,7 +44,15 @@ export default function Register() {
       ...body,
       [name]: value,
     });
-    console.log(body)
+    console.log(body);
+  }
+
+  function sendForm(e) {
+    e.preventDefault();
+
+    postNewUser(body)
+      .then(() => navigate("/"))
+      .catch((err) => alert(err.message));
   }
 }
 
