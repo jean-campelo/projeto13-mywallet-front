@@ -1,8 +1,16 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import joi from "joi";
 import DataContext from "../context/dataContext.js";
 import { postNewUser } from "../services/my_wallet.js";
+
+const newUserSchema = joi.object({
+  name: joi.string().required().empty(" "),
+  email: joi.required().email(),
+  password: joi.string().required().empty(" "),
+  confirmPassword: joi.ref("password"),
+});
 
 export default function Register() {
   let navigate = useNavigate();
@@ -44,7 +52,6 @@ export default function Register() {
       ...body,
       [name]: value,
     });
-    console.log(body);
   }
 
   function sendForm(e) {
