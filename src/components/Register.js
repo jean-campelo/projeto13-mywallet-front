@@ -48,10 +48,9 @@ export default function Register() {
 
   function sendForm(e) {
     e.preventDefault();
-
     postNewUser(body)
       .then(() => navigate("/"))
-      .catch((err) => alert(err.message));
+      .catch((err) => alert(err.response.data.message));
   }
 }
 
