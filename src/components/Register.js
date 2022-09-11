@@ -48,9 +48,25 @@ export default function Register() {
 
   function sendForm(e) {
     e.preventDefault();
+
+    validateNewUser(body);
+
     postNewUser(body)
       .then(() => navigate("/"))
       .catch((err) => alert(err.response.data.message));
+  }
+
+  function validateNewUser(body) {
+    const { name, email, password, confirmPassword } = body;
+
+    if (
+      name === undefined ||
+      email === undefined ||
+      password === undefined ||
+      confirmPassword === undefined
+    ) {
+      alert("Todos os campos devem ser preenchidos!!");
+    }
   }
 }
 
