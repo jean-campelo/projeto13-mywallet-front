@@ -61,10 +61,10 @@ export default function Register() {
     e.preventDefault();
     setIsDisabled(!isDisabled);
     validateNewUser(body);
-
+    
     postNewUser(body)
       .then(() => navigate("/"))
-      .catch((err) => alert(err.response.data.message));
+      .catch((err) => {alert(err.response.data.message); setIsDisabled(false)});
   }
 
   function validateNewUser(body) {
@@ -82,6 +82,7 @@ export default function Register() {
     if (password !== confirmPassword) {
       alert("As senhas devem ser iguais");
     }
+    setIsDisabled(false);
   }
 }
 
