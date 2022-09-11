@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import DataContext from "../context/dataContext.js";
+import { useContext } from "react";
 
 export default function Login() {
+  const { body, setBody } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
