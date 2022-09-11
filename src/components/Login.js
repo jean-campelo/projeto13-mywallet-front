@@ -24,11 +24,14 @@ export default function Login() {
           disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
-        <button disabled={isDisabled} > {isDisabled ? (
+        <button disabled={isDisabled}>
+          {" "}
+          {isDisabled ? (
             <ThreeDots color="#c453f4" height={40} width={40} />
           ) : (
             "Entrar"
-          )} </button>
+          )}{" "}
+        </button>
       </Form>
       <Link to={"/register"}>
         <h2 onClick={() => setBody({})}>Primeira vez? Cadastre-se!</h2>
@@ -44,8 +47,16 @@ export default function Login() {
   }
   function sendForm(e) {
     e.preventDefault();
-
-    postLogin(body).then(() => navigate("/account"));
+    setIsDisabled(!isDisabled);
+    postLogin(body)
+      .then((res) => {
+        navigate("/account");
+        
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+        setIsDisabled(false)
+      });
   }
 }
 
