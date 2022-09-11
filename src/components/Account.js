@@ -4,11 +4,11 @@ import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
 
 export default function Account() {
-  const {isDisabled, setIsDisabed} = useContext(DataContext);
+  const {isDisabled, setIsDisabed, dataUser} = useContext(DataContext);
   return (
     <Container>
       <Header>
-        <h1>Olá, userName</h1>
+        <h1>Olá, {dataUser.name}</h1>
         <Link to={"/"} onClick={()=>setIsDisabed(false)}>
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>

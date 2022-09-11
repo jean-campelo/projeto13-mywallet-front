@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export default function Login() {
   let navigate = useNavigate();
-  const { body, setBody, isDisabled, setIsDisabled, dataUser, setDataUser, setConfig } = useContext(DataContext);
+  const { body, setBody, isDisabled, setIsDisabled, setDataUser, setConfig } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
