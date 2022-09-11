@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import DataContext from "../context/dataContext.js";
 
 export default function Account() {
+  const {isDisabled, setIsDisabed} = useContext(DataContext);
   return (
     <Container>
       <Header>
         <h1>Olá, userName</h1>
-        <Link to={"/"}>
+        <Link to={"/"} onClick={()=>setIsDisabed(false)}>
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>
       </Header>
