@@ -12,7 +12,8 @@ import RegisterCredit from "./RegisterCredit";
 export default function App() {
   const [body, setBody] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
-  const [userName, setUserName] = useState();
+  const [dataUser, setDataUser] = useState("config inicial");
+  const [config, setConfig] = useState({});
 
   return (
     <DataContext.Provider
@@ -21,8 +22,10 @@ export default function App() {
         setBody,
         isDisabled,
         setIsDisabled,
-        userName,
-        setUserName,
+        dataUser,
+        setDataUser,
+        config,
+        setConfig,
       }}
     >
       <BrowserRouter>
