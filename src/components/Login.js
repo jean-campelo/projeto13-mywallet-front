@@ -1,9 +1,11 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext.js";
 import { useContext } from "react";
+import { postLogin } from '../services/my_wallet.js'
 
 export default function Login() {
+  let navigate = useNavigate();
   const { body, setBody } = useContext(DataContext);
   return (
     <Main>
@@ -22,7 +24,7 @@ export default function Login() {
         <button> Entrar </button>
       </Form>
       <Link to={"/register"}>
-        <h2 onClick={()=>setBody({})}>Primeira vez? Cadastre-se!</h2>
+        <h2 onClick={() => setBody({})}>Primeira vez? Cadastre-se!</h2>
       </Link>
     </Main>
   );
@@ -31,11 +33,12 @@ export default function Login() {
     setBody({
       ...body,
       [name]: value,
-    })
-    
+    });
   }
   function sendForm(e) {
     e.preventDefault();
+
+    postLogin(body).then(() => navigate("/account"));
   }
 }
 
