@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import DataContext from "../context/dataContext.js";
 import { useContext } from "react";
-import { postLogin } from '../services/my_wallet.js'
+import { postLogin } from "../services/my_wallet.js";
 
 export default function Login() {
   let navigate = useNavigate();
-  const { body, setBody } = useContext(DataContext);
+  const { body, setBody, isDisabled, setIsDisabled } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
@@ -14,11 +14,13 @@ export default function Login() {
         <input
           placeholder="E-mail"
           name="email"
+          disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
         <input
           placeholder="Senha"
           name="password"
+          disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
         <button> Entrar </button>
@@ -81,6 +83,13 @@ const Form = styled.form`
     padding: 10px;
     font-size: 20px;
   }
+
+  input:disabled {
+    background-color: #a74fca;
+    color: #e9a8ff;
+    border: var(--color-background);
+  }
+
   button {
     width: 90vw;
     height: 45px;
