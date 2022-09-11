@@ -9,7 +9,10 @@ export default function Account() {
 
   useEffect(()=>{
     getTransactions(config)
-    
+    .then((res)=>{
+    setTransactions(res.data);
+      })
+    .catch((err) => alert(err.response.data.message))
   }, [])
 
   return (
