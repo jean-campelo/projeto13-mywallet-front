@@ -67,6 +67,10 @@ export default function Register() {
     ) {
       alert("Todos os campos devem ser preenchidos!!");
     }
+
+    if (password !== confirmPassword) {
+      alert("As senhas devem ser iguais");
+    }
   }
 }
 
