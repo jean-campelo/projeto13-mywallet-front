@@ -7,7 +7,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export default function Login() {
   let navigate = useNavigate();
-  const { body, setBody, isDisabled, setIsDisabled } = useContext(DataContext);
+  const { body, setBody, isDisabled, setIsDisabled, setUserName } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
@@ -51,7 +51,7 @@ export default function Login() {
     postLogin(body)
       .then((res) => {
         navigate("/account");
-        
+        setUserName(res.data.name);
       })
       .catch((err) => {
         alert(err.response.data.message);
