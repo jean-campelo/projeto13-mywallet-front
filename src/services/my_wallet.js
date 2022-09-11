@@ -7,4 +7,9 @@ function postNewUser (body) {
     return promise;
 };
 
-export { postNewUser };
+function postLogin (body) {
+    const promise = axios.post(`${URL}/sign-in`, body);
+    return promise;
+}
+
+export { postNewUser, postLogin };
