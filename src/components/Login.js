@@ -22,7 +22,7 @@ export default function Login() {
         <button> Entrar </button>
       </Form>
       <Link to={"/register"}>
-        <h2>Primeira vez? Cadastre-se!</h2>
+        <h2 onClick={()=>setBody({})}>Primeira vez? Cadastre-se!</h2>
       </Link>
     </Main>
   );

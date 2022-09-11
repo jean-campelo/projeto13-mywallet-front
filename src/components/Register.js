@@ -45,7 +45,7 @@ export default function Register() {
         </button>
       </Form>
       <Link to={"/"}>
-        <h2>Já tem uma conta? Entre agora!</h2>
+        <h2 onClick={()=>setBody({})}>Já tem uma conta? Entre agora!</h2>
       </Link>
     </Main>
   );
