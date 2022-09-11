@@ -1,10 +1,17 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DataContext from "../context/dataContext.js";
+import { getTransactions } from '../services/my_wallet.js';
 
 export default function Account() {
-  const {setIsDisabed, dataUser} = useContext(DataContext);
+  const {setIsDisabed, dataUser, config} = useContext(DataContext);
+
+  useEffect(()=>{
+    getTransactions(config)
+    
+  }, [])
+
   return (
     <Container>
       <Header>
