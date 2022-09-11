@@ -5,7 +5,7 @@ import DataContext from "../context/dataContext.js";
 import { getTransactions } from '../services/my_wallet.js';
 
 export default function Account() {
-  const {setIsDisabed, dataUser, config} = useContext(DataContext);
+  const {setIsDisabed, dataUser, config, transactions, setTransactions} = useContext(DataContext);
 
   useEffect(()=>{
     getTransactions(config)

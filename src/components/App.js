@@ -14,6 +14,7 @@ export default function App() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [dataUser, setDataUser] = useState("config inicial");
   const [config, setConfig] = useState({});
+  const [transactions, setTransactions] = useState([]);
 
   return (
     <DataContext.Provider
@@ -26,6 +27,8 @@ export default function App() {
         setDataUser,
         config,
         setConfig,
+        transactions,
+        setTransactions,
       }}
     >
       <BrowserRouter>
