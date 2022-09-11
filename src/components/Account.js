@@ -4,7 +4,7 @@ import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
 
 export default function Account() {
-  const {isDisabled, setIsDisabed, dataUser} = useContext(DataContext);
+  const {setIsDisabed, dataUser} = useContext(DataContext);
   return (
     <Container>
       <Header>

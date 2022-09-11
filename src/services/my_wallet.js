@@ -10,6 +10,11 @@ function postNewUser (body) {
 function postLogin (body) {
     const promise = axios.post(`${URL}/sign-in`, body);
     return promise;
+};
+
+function getTransactions (config) {
+    const promise = axios.get(`${URL}/transactions`, config);
+    return promise;
 }
 
-export { postNewUser, postLogin };
+export { postNewUser, postLogin, getTransactions };
