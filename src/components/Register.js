@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
 import { postNewUser } from "../services/my_wallet.js";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function Register() {
   let navigate = useNavigate();
@@ -35,7 +36,13 @@ export default function Register() {
           disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
-        <button type="submit"> Cadastrar </button>
+        <button type="submit">
+          {isDisabled ? (
+            <ThreeDots color="#c453f4" height={40} width={40} />
+          ) : (
+            "Cadastrar"
+          )}
+        </button>
       </Form>
       <Link to={"/"}>
         <h2>Já tem uma conta? Entre agora!</h2>
@@ -117,7 +124,17 @@ const Form = styled.form`
     padding: 10px;
     font-size: 20px;
   }
+
+  input:disabled {
+    background-color: #a74fca;
+    color: #e9a8ff;
+    border: var(--color-background);
+  }
+
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90vw;
     height: 45px;
     margin-bottom: 6px;
