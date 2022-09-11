@@ -6,7 +6,7 @@ import { postNewUser } from "../services/my_wallet.js";
 
 export default function Register() {
   let navigate = useNavigate();
-  const { body, setBody } = useContext(DataContext);
+  const { body, setBody, isDisabled, setIsDisabled } = useContext(DataContext);
   return (
     <Main>
       <h1>MyWallet</h1>
@@ -14,21 +14,25 @@ export default function Register() {
         <input
           placeholder="Nome"
           name="name"
+          disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
         <input
           placeholder="E-mail"
           name="email"
+          disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
         <input
           placeholder="Senha"
           name="password"
+          disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
         <input
           placeholder="Confirme a senha"
           name="confirmPassword"
+          disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
         <button type="submit"> Cadastrar </button>
@@ -48,7 +52,7 @@ export default function Register() {
 
   function sendForm(e) {
     e.preventDefault();
-
+    setIsDisabled(!isDisabled);
     validateNewUser(body);
 
     postNewUser(body)
