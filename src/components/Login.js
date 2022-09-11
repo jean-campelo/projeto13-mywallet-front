@@ -8,14 +8,35 @@ export default function Login() {
   return (
     <Main>
       <h1>MyWallet</h1>
-      <Form>
-        <input placeholder="E-mail" name="email" />
-        <input placeholder="Senha" name="password" />
+      <Form onSubmit={sendForm}>
+        <input
+          placeholder="E-mail"
+          name="email"
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
+        <input
+          placeholder="Senha"
+          name="password"
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
         <button> Entrar </button>
       </Form>
-      <Link to={"/register"}><h2>Primeira vez? Cadastre-se!</h2></Link>
+      <Link to={"/register"}>
+        <h2>Primeira vez? Cadastre-se!</h2>
+      </Link>
     </Main>
   );
+
+  function handleForm(name, value) {
+    setBody({
+      ...body,
+      [name]: value,
+    })
+    
+  }
+  function sendForm(e) {
+    e.preventDefault();
+  }
 }
 
 const Main = styled.main`
