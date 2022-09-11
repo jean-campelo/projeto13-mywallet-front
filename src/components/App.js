@@ -12,9 +12,10 @@ import RegisterCredit from "./RegisterCredit";
 export default function App() {
   const [body, setBody] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
+  const [dataUser, setDataUser] = useState({});
 
   return (
-    <DataContext.Provider value={{ body, setBody, isDisabled, setIsDisabled }}>
+    <DataContext.Provider value={{ body, setBody, isDisabled, setIsDisabled, dataUser, setDataUser }}>
       <BrowserRouter>
         <GlobalStyles />
         <Routes>
