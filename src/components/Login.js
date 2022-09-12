@@ -57,6 +57,7 @@ export default function Login() {
           },
         });
         navigate("/account");
+        setIsDisabled(false);
       })
       .catch((err) => {
         alert(err.response.data.message);

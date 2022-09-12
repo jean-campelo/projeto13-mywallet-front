@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
 import { postNewRegister } from "../services/my_wallet.js";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function RegisterCredit() {
-  const {register, setRegister, config} = useContext(DataContext);
+  const { register, setRegister, config, isDisabled, setIsDisabled } =
+    useContext(DataContext);
   return (
     <Container>
       <Header>
@@ -15,9 +17,26 @@ export default function RegisterCredit() {
         </Link>
       </Header>
       <Form onSubmit={sendForm}>
-        <input placeholder="Valor" name="value" onChange={(e) => handleForm(e.target.name, e.target.value)} />
-        <input placeholder="Descrição" name="description" onChange={(e) => handleForm(e.target.name, e.target.value)} />
-        <button type="submit"> Salvar entrada </button>
+        <input
+          placeholder="Valor"
+          name="value"
+          disabled={isDisabled}
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
+        <input
+          placeholder="Descrição"
+          name="description"
+          disabled={isDisabled}
+          onChange={(e) => handleForm(e.target.name, e.target.value)}
+        />
+        <button type="submit">
+          {" "}
+          {isDisabled ? (
+            <ThreeDots color="#c453f4" height={40} width={40} />
+          ) : (
+            "Salvar entrada"
+          )}{" "}
+        </button>
       </Form>
     </Container>
   );
@@ -26,14 +45,13 @@ export default function RegisterCredit() {
     setRegister({
       ...register,
       [name]: value,
-    })
+    });
   }
 
   function sendForm(e) {
     e.preventDefault();
-
-    postNewRegister(register, config)
-    
+    setIsDisabled(true);
+    postNewRegister(register, config);
   }
 }
 
@@ -81,7 +99,17 @@ const Form = styled.form`
     padding: 10px;
     font-size: 20px;
   }
+
+  input:disabled {
+    background-color: #a74fca;
+    color: #e9a8ff;
+    border: var(--color-background);
+  }
+
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90vw;
     height: 45px;
     margin-bottom: 6px;
