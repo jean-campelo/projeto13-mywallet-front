@@ -6,15 +6,30 @@ import { getTransactions } from "../services/my_wallet.js";
 import Transactions from "./Transactions.js";
 
 export default function Account() {
-  const { setIsDisabled, dataUser, config, transactions, setTransactions } =
-    useContext(DataContext);
+  const {
+    setIsDisabled,
+    dataUser,
+    config,
+    transactions,
+    setTransactions,
+    total,
+    setTotal,
+  } = useContext(DataContext);
 
   useEffect(() => {
+    let valueTotal = 0;
     getTransactions(config)
       .then((res) => {
         setTransactions(res.data);
       })
       .catch((err) => alert(err.response.data.message));
+
+    transactions.map((register) => {
+      register.type === "debit"
+        ? (valueTotal -= register.value)
+        : (valueTotal += register.value);
+    });
+    setTotal(valueTotal);
   }, []);
 
   return (

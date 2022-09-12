@@ -21,6 +21,8 @@ export default function RegisterCredit() {
         <input
           placeholder="Valor"
           name="value"
+          type="number"
+          step="0.01"
           disabled={isDisabled}
           onChange={(e) => handleForm(e.target.name, e.target.value)}
         />
@@ -48,6 +50,10 @@ export default function RegisterCredit() {
       [name]: value,
       type: "credit",
     });
+    setRegister({
+      ...register,
+      value: (value*100),
+    })
   }
 
   function sendForm(e) {

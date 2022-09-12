@@ -2,16 +2,8 @@ import styled from "styled-components";
 import DataContext from "../context/dataContext.js";
 import { useContext } from "react";
 
-let total = 0;
-
 export default function Transactions() {
-  const { transactions } = useContext(DataContext);
-
-  transactions.map((register) =>
-    register.type === "debit"
-      ? (total -= register.value)
-      : (total += register.value)
-  );
+  const { transactions, total } = useContext(DataContext);
 
   return (
     <Container>
@@ -23,7 +15,7 @@ export default function Transactions() {
           description={item.description}
         />
       ))}
-      <Total>
+      <Total valueTotal={total}>
         <h1>SALDO</h1>
         <h2>{(total / 100).toFixed(2)}</h2>
       </Total>
@@ -100,6 +92,6 @@ const Total = styled.div`
   }
 
   h2 {
-    color: ${total > 0 ? "var(--color-green)" : "var(--color-red)"};
+    color: ${(props) => props.valueTotal > 0 ? "var(--color-green)" : "var(--color-red)"} ;
   }
 `;
