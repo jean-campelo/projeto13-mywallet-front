@@ -14,12 +14,19 @@ export default function RegisterCredit() {
         </Link>
       </Header>
       <Form>
-        <input placeholder="Valor" name="value" />
-        <input placeholder="Descrição" name="description" />
+        <input placeholder="Valor" name="value" onChange={(e) => handleForm(e.target.name, e.target.value)} />
+        <input placeholder="Descrição" name="description" onChange={(e) => handleForm(e.target.name, e.target.value)} />
         <button> Salvar entrada </button>
       </Form>
     </Container>
   );
+
+  function handleForm(name, value) {
+    setRegister({
+      ...register,
+      [name]: value,
+    })
+  }
 }
 
 const Container = styled.main`
