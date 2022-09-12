@@ -82,7 +82,6 @@ const Header = styled.header`
     font-weight: 700;
     color: var(--color-white);
     font-size: 26px;
-    letter-spacing: 0.5px;
   }
   ion-icon {
     color: var(--color-white);

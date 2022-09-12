@@ -94,6 +94,11 @@ const Total = styled.div`
   background-color: var(--color-white);
   font-size: 16px;
 
+  h1 {
+    font-size: 17px;
+    font-weight: 700;
+  }
+
   h2 {
     color: ${total > 0 ? "var(--color-green)" : "var(--color-red)"};
   }
