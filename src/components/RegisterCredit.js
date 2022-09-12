@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import DataContext from "../context/dataContext.js";
 import { postNewRegister } from "../services/my_wallet.js";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function RegisterCredit() {
   let navigate = useNavigate();
-  const { register, setRegister, config, isDisabled, setIsDisabled } =
-    useContext(DataContext);
+  const { config, isDisabled, setIsDisabled } = useContext(DataContext);
+
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
   return (
     <Container>
       <Header>
@@ -24,13 +26,13 @@ export default function RegisterCredit() {
           type="number"
           step="0.01"
           disabled={isDisabled}
-          onChange={(e) => handleForm(e.target.name, e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
         <input
           placeholder="Descrição"
           name="description"
           disabled={isDisabled}
-          onChange={(e) => handleForm(e.target.name, e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <button type="submit">
           {" "}
@@ -44,22 +46,18 @@ export default function RegisterCredit() {
     </Container>
   );
 
-  function handleForm(name, value) {
-    setRegister({
-      ...register,
-      [name]: value,
-      type: "credit",
-    });
-    setRegister({
-      ...register,
-      value: (value*100),
-    })
-  }
-
   function sendForm(e) {
     e.preventDefault();
+
+    const convertValue = parseFloat(value.replace(",", "")) * 100;
+    const body = {
+      description,
+      value: convertValue,
+      type: "credit",
+    };
+
     setIsDisabled(true);
-    postNewRegister(register, config)
+    postNewRegister(body, config)
       .then(() => navigate("/account"))
       .catch((err) => console.log(err));
   }
