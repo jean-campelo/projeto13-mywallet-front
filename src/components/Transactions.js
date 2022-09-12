@@ -6,6 +6,7 @@ export default function Transactions() {
   const { transactions, total } = useContext(DataContext);
 
   return (
+    <Main>
     <Container>
       {transactions.map((item) => (
         <Render
@@ -15,11 +16,12 @@ export default function Transactions() {
           description={item.description}
         />
       ))}
-      <Total valueTotal={total}>
+    </Container>
+    <Total valueTotal={total}>
         <h1>SALDO</h1>
         <h2>{(total / 100).toFixed(2)}</h2>
       </Total>
-    </Container>
+    </Main>
   );
 
   function Render({ date, value, type, description }) {
@@ -39,6 +41,11 @@ export default function Transactions() {
   }
 }
 
+const Main = styled.div`
+
+position: relative;
+`;
+
 const Container = styled.div`
   background-color: var(--color-white);
   width: 90vw;
@@ -49,7 +56,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  overflow-y: scroll;
 `;
 
 const Register = styled.div`
@@ -57,6 +64,11 @@ const Register = styled.div`
   align-items: center;
   margin-top: 20px;
   width: 90%;
+  align-items: flex-end;
+  
+  :last-child{ 
+    margin-bottom: 50px;
+  }
 `;
 
 const Date = styled.div`
@@ -79,12 +91,15 @@ const Value = styled.div`
 const Total = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: 30px;
   padding: 0 16px;
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   background-color: var(--color-white);
   font-size: 16px;
+  box-shadow: 0px -4px 10px rgba(255, 255, 255, 0.4);
 
   h1 {
     font-size: 17px;
