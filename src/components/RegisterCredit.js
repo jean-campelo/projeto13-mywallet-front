@@ -2,9 +2,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
+import { postNewRegister } from "../services/my_wallet.js";
 
 export default function RegisterCredit() {
-  const {register, setRegister} = useContext(DataContext);
+  const {register, setRegister, config} = useContext(DataContext);
   return (
     <Container>
       <Header>
@@ -13,10 +14,10 @@ export default function RegisterCredit() {
           <ion-icon name="close-outline"></ion-icon>
         </Link>
       </Header>
-      <Form>
+      <Form onSubmit={sendForm}>
         <input placeholder="Valor" name="value" onChange={(e) => handleForm(e.target.name, e.target.value)} />
         <input placeholder="Descrição" name="description" onChange={(e) => handleForm(e.target.name, e.target.value)} />
-        <button> Salvar entrada </button>
+        <button type="submit"> Salvar entrada </button>
       </Form>
     </Container>
   );
@@ -26,6 +27,13 @@ export default function RegisterCredit() {
       ...register,
       [name]: value,
     })
+  }
+
+  function sendForm(e) {
+    e.preventDefault();
+
+    postNewRegister(register, config)
+    
   }
 }
 
@@ -49,7 +57,6 @@ const Header = styled.header`
     font-weight: 700;
     color: var(--color-white);
     font-size: 26px;
-    letter-spacing: 0.5px;
   }
 
   ion-icon {
