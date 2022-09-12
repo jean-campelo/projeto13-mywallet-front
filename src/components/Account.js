@@ -25,17 +25,20 @@ export default function Account() {
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>
       </Header>
-      <RegistersSection>
-        <div>
-          {transactions.length === 0 ? (
-            <h1>
-              Não há registros de <br></br>entrada ou saída
-            </h1>
-          ) : (
-            <Transactions />
-          )}
-        </div>
-      </RegistersSection>
+
+      <div>
+        {transactions.length === 0 ? (
+          <RegistersSection>
+            <div>
+              <h1>
+                Não há registros de <br></br>entrada ou saída
+              </h1>
+            </div>
+          </RegistersSection>
+        ) : (
+          <Transactions />
+        )}
+      </div>
 
       <Buttons>
         <Link to="/registerCredit">

@@ -6,7 +6,7 @@ export default function Transactions() {
   const { transactions } = useContext(DataContext);
 
   return (
-    <>
+    <Container>
       {transactions.map((item) => (
         <Render
           date={item.date}
@@ -15,25 +15,51 @@ export default function Transactions() {
           description={item.description}
         />
       ))}
-    </>
+    </Container>
   );
 
   function Render({ date, value, type, description }) {
     return (
       <Register>
+        <Date>
+          <h2> {date} </h2>
+        </Date>
         <Info>
-          <h1> {date} </h1>
-          <h2> {description} </h2>
+          <h3> {description} </h3>
+          <h4> {value} </h4>
         </Info>
-        <Value>
-          <h2> {value} </h2>
-        </Value>
       </Register>
     );
   }
 }
-const Register = styled.div``;
 
-const Info = styled.div``;
+const Container = styled.div`
+  background-color: var(--color-white);
+  width: 90vw;
+  height: 70vh;
+  margin: 16px 0;
+  border: 1px solid var(--color-white);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-const Value = styled.div``;
+const Register = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  width: 90%;
+`;
+
+const Date = styled.div`
+    color: #C6C6C6; 
+`;
+
+const Info = styled.div`
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin-left: 16px;
+    font-size: 16px;
+`;
