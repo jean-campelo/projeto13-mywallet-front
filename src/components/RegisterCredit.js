@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import DataContext from "../context/dataContext.js";
 import { postNewRegister } from "../services/my_wallet.js";
 import { ThreeDots } from "react-loader-spinner";
 
 export default function RegisterCredit() {
+  let navigate = useNavigate();
   const { register, setRegister, config, isDisabled, setIsDisabled } =
     useContext(DataContext);
   return (
@@ -51,7 +52,7 @@ export default function RegisterCredit() {
   function sendForm(e) {
     e.preventDefault();
     setIsDisabled(true);
-    postNewRegister(register, config);
+    postNewRegister(register, config).then(() => navigate("/account"))
   }
 }
 
