@@ -27,7 +27,7 @@ export default function Transactions() {
         <Info>
           <h3> {description} </h3>
           <Value type={type}>
-            <h4> {value} </h4>
+            <h4> {(value/100).toFixed(2)} </h4>
           </Value>
         </Info>
       </Register>
