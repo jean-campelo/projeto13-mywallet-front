@@ -3,7 +3,7 @@ import DataContext from "../context/dataContext.js";
 import { useContext } from "react";
 
 export default function Transactions() {
-  const { transactions } = useContext(DataContext);
+  const { transactions, total } = useContext(DataContext);
 
   return (
     <Container>
@@ -15,6 +15,10 @@ export default function Transactions() {
           description={item.description}
         />
       ))}
+      <Total>
+        <h1>SALDO</h1>
+        <h2>{total}</h2>
+      </Total>
     </Container>
   );
 
@@ -45,6 +49,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `;
 
 const Register = styled.div`
@@ -69,4 +74,15 @@ const Info = styled.div`
 const Value = styled.div`
   color: ${(props) =>
     props.type === "debit" ? "var(--color-red)" : "var(--color-green)"};
+`;
+
+const Total = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 16px;
+    position: absolute;
+    bottom: 10px;
+    background-color: var(--color-white);
+    font-size: 16px;
 `;
