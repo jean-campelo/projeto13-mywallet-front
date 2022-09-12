@@ -2,32 +2,38 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import DataContext from "../context/dataContext.js";
-import { getTransactions } from '../services/my_wallet.js';
+import { getTransactions } from "../services/my_wallet.js";
+import Transactions from "./Transactions.js";
 
 export default function Account() {
-  const {setIsDisabed, dataUser, config, transactions, setTransactions} = useContext(DataContext);
+  const { setIsDisabed, dataUser, config, transactions, setTransactions } =
+    useContext(DataContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     getTransactions(config)
-    .then((res)=>{
-    setTransactions(res.data);
+      .then((res) => {
+        setTransactions(res.data);
       })
-    .catch((err) => alert(err.response.data.message))
-  }, [])
+      .catch((err) => alert(err.response.data.message));
+  }, []);
 
   return (
     <Container>
       <Header>
         <h1>Olá, {dataUser.name}</h1>
-        <Link to={"/"} onClick={()=>setIsDisabed(false)}>
+        <Link to={"/"} onClick={() => setIsDisabed(false)}>
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>
       </Header>
       <RegistersSection>
         <div>
-          <h1>
-            Não há registros de <br></br>entrada ou saída
-          </h1>
+          {transactions.length === 0 ? (
+            <h1>
+              Não há registros de <br></br>entrada ou saída
+            </h1>
+          ) : (
+            <Transactions />
+          )}
         </div>
       </RegistersSection>
 
