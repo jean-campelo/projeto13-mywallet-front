@@ -26,7 +26,9 @@ export default function Transactions() {
         </Date>
         <Info>
           <h3> {description} </h3>
-          <h4> {value} </h4>
+          <Value type={type}>
+            <h4> {value} </h4>
+          </Value>
         </Info>
       </Register>
     );
@@ -53,13 +55,18 @@ const Register = styled.div`
 `;
 
 const Date = styled.div`
-    color: #C6C6C6; 
+  color: #c6c6c6;
 `;
 
 const Info = styled.div`
-    display: flex;
-    width: 90%;
-    justify-content: space-between;
-    margin-left: 16px;
-    font-size: 16px;
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin-left: 16px;
+  font-size: 16px;
+`;
+
+const Value = styled.div`
+  color: ${(props) =>
+    props.type === "debit" ? "var(--color-red)" : "var(--color-green)"};
 `;
