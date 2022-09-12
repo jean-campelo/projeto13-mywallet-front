@@ -1,7 +1,16 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import DataContext from "../context/dataContext.js";
+import { postNewRegister } from "../services/my_wallet.js";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function RegisterDebit() {
+  let navigate = useNavigate();
+  const { config, isDisabled, setIsDisabled } = useContext(DataContext);
+
+  const [description, setDescription] = useState("");
+  const [value, setValue] = useState("");
   return (
     <Container>
       <Header>
@@ -10,13 +19,48 @@ export default function RegisterDebit() {
           <ion-icon name="close-outline"></ion-icon>
         </Link>
       </Header>
-      <Form>
-        <input placeholder="Valor" name="value" />
-        <input placeholder="Descrição" name="description" />
-        <button> Salvar saída </button>
+      <Form onSubmit={sendForm}>
+        <input
+          placeholder="Valor"
+          name="value"
+          type="number"
+          step="0.01"
+          disabled={isDisabled}
+          onChange={(e) => setValue(e.target.value)}
+        />
+        <input
+          placeholder="Descrição"
+          name="description"
+          disabled={isDisabled}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button type="submit">
+          {" "}
+          {isDisabled ? (
+            <ThreeDots color="#c453f4" height={40} width={40} />
+          ) : (
+            "Salvar saída"
+          )}{" "}
+        </button>
       </Form>
     </Container>
   );
+
+  function sendForm(e) {
+    e.preventDefault();
+
+    const convertValue = parseFloat(value.replace(",", "")) * 100;
+    const body = {
+      description,
+      value: convertValue,
+      type: "debit",
+    };
+
+    setIsDisabled(true);
+    postNewRegister(body, config)
+      .then(() => navigate("/account"))
+      .catch((err) => console.log(err));
+  }
 }
 
 const Container = styled.main`
@@ -39,7 +83,6 @@ const Header = styled.header`
     font-weight: 700;
     color: var(--color-white);
     font-size: 26px;
-    letter-spacing: 0.5px;
   }
 
   ion-icon {
@@ -64,7 +107,17 @@ const Form = styled.form`
     padding: 10px;
     font-size: 20px;
   }
+
+  input:disabled {
+    background-color: #a74fca;
+    color: #e9a8ff;
+    border: var(--color-background);
+  }
+
   button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 90vw;
     height: 45px;
     margin-bottom: 6px;
