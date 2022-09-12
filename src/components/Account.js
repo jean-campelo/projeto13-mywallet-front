@@ -6,7 +6,7 @@ import { getTransactions } from "../services/my_wallet.js";
 import Transactions from "./Transactions.js";
 
 export default function Account() {
-  const { setIsDisabed, dataUser, config, transactions, setTransactions } =
+  const { setIsDisabled, dataUser, config, transactions, setTransactions } =
     useContext(DataContext);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Account() {
     <Container>
       <Header>
         <h1>Olá, {dataUser.name}</h1>
-        <Link to={"/"} onClick={() => setIsDisabed(false)}>
+        <Link to={"/"} onClick={() => setIsDisabled(false)}>
           <ion-icon name="log-out-outline"></ion-icon>
         </Link>
       </Header>
@@ -41,7 +41,7 @@ export default function Account() {
       </div>
 
       <Buttons>
-        <Link to="/registerCredit">
+        <Link to={"/registerCredit"} onClick={() => setIsDisabled(false)}>
           <NewCredit>
             <ion-icon name="add-circle-outline"></ion-icon>
             <h1>
@@ -50,7 +50,7 @@ export default function Account() {
           </NewCredit>
         </Link>
 
-        <Link to="/registerDebit">
+        <Link to={"/registerDebit"} onClick={() => setIsDisabled(false)}>
           <NewDebit>
             <ion-icon name="remove-circle-outline"></ion-icon>
             <h1>

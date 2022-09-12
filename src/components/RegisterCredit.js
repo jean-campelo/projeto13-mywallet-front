@@ -46,13 +46,16 @@ export default function RegisterCredit() {
     setRegister({
       ...register,
       [name]: value,
+      type: "credit",
     });
   }
 
   function sendForm(e) {
     e.preventDefault();
     setIsDisabled(true);
-    postNewRegister(register, config).then(() => navigate("/account"))
+    postNewRegister(register, config)
+      .then(() => navigate("/account"))
+      .catch((err) => console.log(err));
   }
 }
 
